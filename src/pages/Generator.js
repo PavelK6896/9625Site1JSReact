@@ -18,37 +18,40 @@ export const Generator = () => {
     }
 
     return (
-        <>
-            <Navbar/>
-            <div className="container">
-                <h1>Генератор паролей</h1>
-                <main className="main" style={{
-                    minHeight: '60vh'
-                }}>
-                    <input type="number"
-                           value={state.value1}
-                           step={4}
-                           onChange={(event1) => {
-                               setState({
+        <div className="body">
+            <div className="wrapper">
+                <Navbar/>
+                <div className="container">
+                    <h1>Генератор паролей</h1>
+                    <main className="main" style={{
+                        minHeight: '60vh'
+                    }}>
+                        <input type="number"
+                               value={state.value1}
+                               step={4}
+                               onChange={(event1) => {
+                                   setState({
                                        text1: (generateText(event1.target.value - 1)),
                                        value1: event1.target.value
                                    })
-                           }}
-                           style={{maxWidth: '50px'}}/>
-                           <button style={{maxWidth: '50px', marginLeft: '10px' }} onClick={()=>{
-                               setState({
-                                       text1: (generateText(state.value1)),
-                                       value1: state.value1
-                                   })
-                           } }>еще</button>
+                               }}
+                               style={{maxWidth: '50px'}}/>
+                        <button style={{maxWidth: '50px', marginLeft: '10px'}} onClick={() => {
+                            setState({
+                                text1: (generateText(state.value1)),
+                                value1: state.value1
+                            })
+                        }}>еще
+                        </button>
 
-                    <div>Вашь пароль длиной {state.text1.length}:
-                        <pre style={{fontSize: '50px'}}>{state.text1}</pre>
-                    </div>
-                </main>
+                        <div>Вашь пароль длиной {state.text1.length}:
+                            <pre style={{fontSize: '50px'}}>{state.text1}</pre>
+                        </div>
+                    </main>
+                </div>
             </div>
             <Footer/>
-        </>
+        </div>
     )
 }
 
