@@ -3,45 +3,46 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  monospace;
 }
 
-.color{
+.color {
   background: linear-gradient(rgba(55, 58, 116, 0.84), rgba(33, 80, 153, 0.87));
 }
 
-.text-color{
+.text-color {
   color: #cdcfd2;
 }
 
-.wrapper{
+.wrapper {
   flex-grow: 1;
 }
-.body{
+
+.body {
   display: flex;
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
 }
 
-.active{
+.active {
   background: rgba(48, 69, 95, 0.8);
   border-radius: 10px;
 }
 
-.nav-item{
+.nav-item {
   border: 1px solid transparent;
 }
 
-.nav-item:hover{
+.nav-item:hover {
   border: 1px solid rgba(9, 64, 130, 0.84);
   border-radius: 10px;
   background: rgba(98, 111, 132, 0.78);

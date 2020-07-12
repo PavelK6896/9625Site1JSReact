@@ -42,21 +42,17 @@ export const Navbar = () => {
                         <NavLink className="nav-link" to="/main">Главная <span
                             className="sr-only">(current)</span></NavLink>
                     </li>
+
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/contacts"> Контакты </NavLink>
+                        <a className="nav-link" href="https://pavelktrainer1.web.app"> тренер1 </a>
                     </li>
 
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/contacts"> тренер1 </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/contacts"> тест1 </NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/contacts"> справочьник1 </NavLink>
-                    </li>
-                    <li className="nav-item">
                         <NavLink className="nav-link" to="/generator"> генератор1 </NavLink>
+                    </li>
+
+                    <li className="nav-item">
+                        <NavLink className="nav-link" to="/contacts"> Контакты </NavLink>
                     </li>
                 </ul>
                 <hr/>

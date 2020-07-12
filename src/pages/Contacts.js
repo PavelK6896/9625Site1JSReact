@@ -1,8 +1,124 @@
-import React from "react";
+import React, {useState} from "react";
 import {Navbar} from "../component/Navbar";
 import {Footer} from "../component/Footer";
+import {address} from "../../setting";
+
 
 export const Contacts = () => {
+
+    const [state, setState] = useState(
+        {
+            name: "",
+            email: "",
+            message: "",
+            subject: "",
+            info: ""
+        }
+    )
+
+    function nameH(e) {
+        setState(
+            {
+                ...state,
+                name: e.target.value
+            })
+    }
+
+    function emailH(e) {
+        setState(
+            {
+                ...state,
+                email: e.target.value
+            })
+
+    }
+
+    function messageH(e) {
+
+        setState(
+            {
+                ...state,
+                message: e.target.value
+            })
+
+    }
+
+    function subjectH(e) {
+
+        setState(
+            {
+                ...state,
+                subject: e.target.value
+            })
+    }
+
+    function deleteH(e) {
+        setState(
+            {
+                ...state,
+                name: "",
+                email: "",
+                message: "",
+                subject: "",
+            }
+        )
+    }
+
+
+    async function send(e) {
+        // let formData = new FormData();
+
+        if (state.name === "") {
+            setState({
+                ...state,
+                info: "Введите имя"
+            })
+            return
+        }
+
+        if (state.email === "") {
+            setState({
+                ...state,
+                info: "Введите email"
+            })
+            return
+        }
+
+        if (state.subject === "") {
+            setState({
+                ...state,
+                info: "Введите тему"
+            })
+            return
+        }
+        if (state.message === "") {
+            setState({
+                ...state,
+                info: "Введите message"
+            })
+            return
+        }
+
+        setState({
+            ...state,
+            name: "",
+            email: "",
+            message: "",
+            subject: "",
+            info: "Сообщение отправленно"
+        })
+
+
+        state.message = "имя " + state.name + " маил " + state.email + " сообщение " + state.message
+        await fetch(
+            address, //'http://localhost:8081/app1/',
+            {
+                method: 'POST',
+                body: JSON.stringify({subject: state.subject, message: state.message})
+            }
+        )//.then(result => result.json().then(console.log))
+    }
+
     return (
         <div className="body">
             <div className="wrapper">
@@ -10,26 +126,27 @@ export const Contacts = () => {
                 <main className="main">
                     <div className="container">
                         <div className="col-3 align-items-end">
-                            <label htmlFor="exampleFormControlInput1">Напишите:</label>
-                            <form>
+                            <label>Напишите: <span style={{
+                                color: "red"
+                            }}>{state.info}</span></label>
+                            <div>
                                 <div className="form-group">
-                                    <input type="name" className="form-control" id="exampleFormControlInput2"
+                                    <input type="name" className="form-control" value={state.name} onChange={nameH}
                                            placeholder="Имя"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="email" className="form-control" id="exampleFormControlInput1"
+                                    <input type="email" className="form-control" value={state.email} onChange={emailH}
                                            placeholder="name@example.com"/>
                                 </div>
                                 <div className="form-group">
-                                    <input type="text" className="form-control" id="exampleFormControlInput19"
-                                           placeholder="Тема"/>
+                                    <input type="text" className="form-control" value={state.subject}
+                                           onChange={subjectH} placeholder="Тема"
+                                    />
                                 </div>
-                                <textarea className="form-control" id="exampleFormControlTextarea1" rows="3">
-                    </textarea>
-                                <button type="submit" className="btn  mb-3 float-md-right">send</button>
-                                <button type="reset" className="btn  mb-3">delete</button>
-                            </form>
-
+                                <textarea className="form-control" value={state.message} onChange={messageH} rows="3"/>
+                                <button onClick={() => send()}>send</button>
+                                <button onClick={() => deleteH()} className="btn  mb-3">delete</button>
+                            </div>
                             <div className="d-flex justify-content-around align-items-center">
                                 <div className="text-body">
                                     <h3>Адрес:</h3>
@@ -39,7 +156,6 @@ export const Contacts = () => {
                         </div>
                     </div>
                 </main>
-
             </div>
             <Footer/>
         </div>

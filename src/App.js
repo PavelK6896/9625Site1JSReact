@@ -6,14 +6,15 @@ import {Generator} from "./pages/Generator";
 
 
 function App() {
-  return (
-      <Switch>
-          <Route path={'/main'} exact component={Main}/>
-          <Route path={'/contacts'} exact component={Contacts}/>
-          <Route path={'/generator'} exact component={Generator}/>
-          <Route path={''} component={Main}/>
-      </Switch>
-  );
+    return (
+        <Switch>
+            <Route path={'/main'} exact component={Main}/>
+            <Route path={'/contacts'} exact component={Contacts}/>
+            <Route path={'/generator'} exact component={Generator}/>
+
+            <Route path={''} component={Main}/>
+        </Switch>
+    );
 }
 
 export default App;
