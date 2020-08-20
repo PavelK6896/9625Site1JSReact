@@ -34,9 +34,12 @@ export const Navbar = () => {
                     border: '1px solid #ccc',
                     borderRadius: '5px',
                     padding: '5px',
+                    background: "transparent",
+
                 }}>
                     PK
                 </NavLink>
+
                 <ul className="navbar-nav ">
                     <li className="nav-item ">
                         <NavLink className="nav-link" to="/main">Главная <span
@@ -44,16 +47,16 @@ export const Navbar = () => {
                     </li>
 
                     <li className="nav-item">
-                        <a className="nav-link" href="https://pavelktrainer1.web.app"> тренер1 </a>
-                    </li>
-
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/generator"> генератор1 </NavLink>
+                        <NavLink className="nav-link" to="/page"> Страницы </NavLink>
                     </li>
 
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/contacts"> Контакты </NavLink>
                     </li>
+
+
+
+
                 </ul>
                 <hr/>
             </div>
