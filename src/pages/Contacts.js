@@ -1,10 +1,15 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Navbar} from "../component/Navbar";
 import {Footer} from "../component/Footer";
 import {address} from "../setting";
+import {FirebaseContext} from "../context/firebase/firebaseContext";
+import {Loader} from "../component/Loader";
 
 
 export const Contacts = () => {
+
+
+    const {showLoader, sendMessage, loading} = useContext(FirebaseContext)
 
     const [state, setState] = useState(
         {
@@ -65,8 +70,8 @@ export const Contacts = () => {
     }
 
 
-    async function send(e) {
-        // let formData = new FormData();
+    function send(e) {
+
 
         if (state.name === "") {
             setState({
@@ -84,13 +89,13 @@ export const Contacts = () => {
             return
         }
 
-        if (state.subject === "") {
-            setState({
-                ...state,
-                info: "Введите тему"
-            })
-            return
-        }
+        // if (state.subject === "") {
+        //     setState({
+        //         ...state,
+        //         info: "Введите тему"
+        //     })
+        //     return
+        // }
         if (state.message === "") {
             setState({
                 ...state,
@@ -99,36 +104,39 @@ export const Contacts = () => {
             return
         }
 
-        setState({
-            ...state,
-            name: "",
-            email: "",
-            message: "",
-            subject: "",
-            info: "Сообщение отправленно"
+        showLoader()
+        sendMessage(
+            state.message,
+            "имя: " + state.name + " почьта: " + state.email + " тема: " + state.subject
+        ).then(() => {
+            setState({
+                ...state,
+                name: "",
+                email: "",
+                message: "",
+                subject: "",
+                info: "Сообщение отправленно"
+            })
+        }).catch(() => {
+            setState({
+                ...state,
+                info: "Ошибка отправки"
+            })
         })
-
-
-        state.message = "имя " + state.name + " маил " + state.email + " сообщение " + state.message
-        await fetch(
-            address, //'http://localhost:8081/app1/',
-            {
-                method: 'POST',
-                body: JSON.stringify({subject: state.subject, message: state.message})
-            }
-        )//.then(result => result.json().then(console.log))
     }
 
     return (
         <div className="body">
             <div className="wrapper">
                 <Navbar/>
+
                 <main className="main">
-                    <div className="container">
-                        <div className="col-3 align-items-end">
+                    <div className="container  d-flex justify-content-center">
+                        <div className="col-6">
                             <label>Напишите: <span style={{
                                 color: "red"
-                            }}>{state.info}</span></label>
+                            }}>{loading ? <Loader/> : state.info}</span></label>
+
                             <div>
                                 <div className="form-group">
                                     <input type="name" className="form-control" value={state.name} onChange={nameH}
@@ -144,19 +152,35 @@ export const Contacts = () => {
                                     />
                                 </div>
                                 <textarea className="form-control" value={state.message} onChange={messageH} rows="3"/>
-                                <button onClick={() => send()}>send</button>
-                                <button onClick={() => deleteH()} className="btn  mb-3">delete</button>
+                                <button onClick={() => send()} className="btn  btn-outline-info my-3 ">send</button>
+                                <button onClick={() => deleteH()}
+                                        className="btn btn-outline-secondary ml-3  my-3 ">clear
+                                </button>
                             </div>
-                            <div className="d-flex justify-content-around align-items-center">
+                            <div className="d-flex justify-content-around align-items-center ">
                                 <div className="text-body">
-                                    <h3>Адрес:</h3>
-                                    <p>+7<br/>M<br/>7@mail.com</p>
+                                    <h5>Contact:</h5>
+                                    <div className="d-flex flex-row">
+                                        <div className="d-flex flex-column align-items-end">
+                                            <span>phone&nbsp;</span>
+                                            <span>telegram&nbsp;</span>
+                                            <span>mail&nbsp;</span>
+                                        </div>
+                                        <div  className="d-flex flex-column ">
+                                            <span>+79208776896</span>
+                                            <span>pavelk6896</span>
+                                            <span>79208776896@yandex.com</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </main>
+
+
             </div>
+
             <Footer/>
         </div>
     )

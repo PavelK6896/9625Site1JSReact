@@ -35,28 +35,20 @@ export const Navbar = () => {
                     borderRadius: '5px',
                     padding: '5px',
                     background: "transparent",
-
                 }}>
                     PK
                 </NavLink>
-
                 <ul className="navbar-nav ">
                     <li className="nav-item ">
                         <NavLink className="nav-link" to="/main">Главная <span
                             className="sr-only">(current)</span></NavLink>
                     </li>
-
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/page"> Страницы </NavLink>
                     </li>
-
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/contacts"> Контакты </NavLink>
                     </li>
-
-
-
-
                 </ul>
                 <hr/>
             </div>
