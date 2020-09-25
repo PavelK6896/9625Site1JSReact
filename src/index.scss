@@ -35,16 +35,17 @@ code {
 
 .active {
   background: rgba(48, 69, 95, 0.8);
-  border-radius: 10px;
+  border-radius: 0.25rem;
 }
 
 .nav-item {
   border: 1px solid transparent;
-}
 
-.nav-item:hover {
-  border: 1px solid rgba(9, 64, 130, 0.84);
-  border-radius: 10px;
-  background: rgba(98, 111, 132, 0.78);
+  :hover {
+
+    border-radius: 0.25rem;
+    background: rgba(98, 111, 132, 0.78);
+  }
+
 
 }
