@@ -119,8 +119,11 @@ export const Contacts = () => {
     return (
         <div className="body">
             <div className="wrapper">
-                <Navbar/>
-
+                <div style={{
+                    height: '75px'
+                }}>
+                    <Navbar/>
+                </div>
                 <main className="main">
                     <div className="container  d-flex justify-content-center">
                         <div className="">
@@ -174,10 +177,7 @@ export const Contacts = () => {
                         </div>
                     </div>
                 </main>
-
-
             </div>
-
             <Footer/>
         </div>
     )

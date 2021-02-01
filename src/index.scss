@@ -31,6 +31,7 @@ code {
   flex-direction: column;
   justify-content: center;
   min-height: 100vh;
+  background: rgba(127, 147, 234, 0.31);
 }
 
 .active {
@@ -41,6 +42,7 @@ code {
 .nav-item {
   border: 1px solid transparent;
 
+
   :hover {
 
     border-radius: 0.25rem;
@@ -48,4 +50,33 @@ code {
   }
 
 
+}
+
+
+.a-href {
+  text-decoration: none;
+
+}
+
+.a-href:hover {
+  text-decoration: none;
+  border-radius: 0.25rem;
+  color: rgba(122, 58, 186, 0.78);
+  background: rgba(98, 111, 132, 0.78);
+}
+
+.back-g1{
+  background: rgba(90, 131, 210, 0.8);
+}
+
+.back-g2{
+  background: rgba(90, 210, 106, 0.53);
+}
+
+.back-b1{
+  background: rgba(127, 147, 234, 0.31);
+}
+
+.back-b2{
+  background: rgba(90, 210, 130, 0.44);
 }

@@ -28,29 +28,36 @@ export const Navbar = () => {
     }
 
     return (
-        <nav className="navbar navbar-dark navbar-expand-lg color">
-            <div className="container">
-                <NavLink className="navbar-brand" to="/main" width="30" height="30" alt=""
-                         style={{
-                             border: '1px solid #ccc',
-                             borderRadius: '3px',
-                             padding: '5px',
-                         }}
-                >
-                    PK
-                </NavLink>
+        <div style={{
+            position: "fixed",
+            width: '100vw',
+            zIndex: "99"
+        }}>
+
+            <nav className="navbar navbar-dark navbar-expand color ">
+                <div className="container">
+                    <NavLink className="navbar-brand" to="/main" width="30" height="30" alt=""
+                             style={{
+                                 border: '1px solid #ccc',
+                                 borderRadius: '3px',
+                                 padding: '5px',
+                             }}
+                    >
+                        PK
+                    </NavLink>
                 <ul className="navbar-nav ">
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/page"
-                        > Страницы </NavLink>
+                        > Проекты </NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/contacts"
                         > Контакты </NavLink>
                     </li>
                 </ul>
-                <hr/>
-            </div>
-        </nav>
+                    <hr/>
+                </div>
+            </nav>
+        </div>
     )
 }
