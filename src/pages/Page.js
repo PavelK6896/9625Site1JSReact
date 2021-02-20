@@ -4,7 +4,6 @@ import {
     Animator,
     batch,
     Fade,
-    FadeIn,
     FadeOut,
     MoveIn,
     MoveOut,
@@ -100,11 +99,23 @@ export const Page = () => {
 
             <div className='back-g2'>
                 <ScrollPage page={2}>
-                    <Animator animation={batch(FadeIn(), StickyOut(), MoveOut(0, -200), ZoomIn())}>
-                        <div><a
-                            className="a-href"
-                            href="https://pavelktrainer1.web.app"> тренер1 </a> слепой
-                            печати
+                    <Animator animation={batch(Fade(), StickyOut(),MoveOut(50, 250), ZoomIn())}>
+                        <div>
+                            <Animator animation={MoveIn(-1000, 0)}>Trainer</Animator>
+                            <br/>
+                            <a className="a-href" href="https://pavelktrainer1.web.app">firebase static server</a>
+                            <br/>
+                            <Animator animation={MoveIn(-1000, 0)}>Тренажер слепой печати онлайн.</Animator>
+                            <Animator animation={MoveIn(1500, -1000)}>
+                                <br/>Стек технологий:
+                                <br/>react, webpack, git
+                            </Animator>
+                            <Animator animation={MoveIn(3000, 0)}>
+                                <br/><a className="a-href"
+                                        href={"https://github.com/PavelK6896/9619Trainer1JSReact"}>Work
+                                code -
+                                GitHub</a>
+                            </Animator>
                         </div>
                     </Animator>
                 </ScrollPage>
@@ -112,11 +123,23 @@ export const Page = () => {
 
             <div className='back-g1'>
                 <ScrollPage page={3}>
-                    <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200), ZoomIn())}>
-                        <div><a
-                            className="a-href"
-                            href="https://pavelktrainer2.web.app"> тренер2 </a> устного
-                            счета
+                    <Animator animation={batch(Fade(), StickyOut(),  ZoomIn())}>
+                        <div>
+                            <Animator animation={MoveIn(-1000, 0)}>Trainer</Animator>
+                            <br/>
+                            <a className="a-href"    href="https://pavelktrainer2.web.app">firebase static server</a>
+                            <br/>
+                            <Animator animation={MoveIn(-1000, 0)}>Тренажер устного счета онлайн.</Animator>
+                            <Animator animation={MoveIn(1500, -1000)}>
+                                <br/>Стек технологий:
+                                <br/>angular 10, rxjs 6, TS, webpack, git
+                            </Animator>
+                            <Animator animation={MoveIn(3000, 0)}>
+                                <br/><a className="a-href"
+                                        href={"https://github.com/PavelK6896/9679Trainer2TSAngular"}>Work
+                                code -
+                                GitHub</a>
+                            </Animator>
                         </div>
                     </Animator>
                 </ScrollPage>

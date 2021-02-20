@@ -130,30 +130,32 @@ export const Day = () => {
     return (
         <div className="body">
             <div className="wrapper">
-                <Navbar/>
-                <div className="container">
-                    <p>
-                        сегодня:&nbsp;
-                        {state.dataDay3.toString().slice(0, state.dataDay3.toString().length - 3) +
-                        " " + state.dataDay3.toString().slice(state.dataDay3.toString().length - 3, state.dataDay3.toString().length)}
-                        &nbsp;день
-                    </p>
-                    <p>
-                        сегодня:&nbsp;
-                        {state.dataDay1.toString().slice(0, state.dataDay1.toString().length - 3) +
-                        " " + state.dataDay1.toString().slice(state.dataDay1.toString().length - 3, state.dataDay1.toString().length)}
-                        &nbsp;день нашей эры
-                    </p>
-                    <p><input type={'checkbox'} onChange={onChangeDay}/>{state.text1}</p>
-                    <p><input type={'checkbox'} onChange={onChangeToDay}/>{state.text2}</p>
-                    <p><input type={'date'} onChange={onChangeDate}/> date</p>
-                    <p>
-                        {state.dataDay5.toString().slice(0, state.dataDay5.toString().length - 3) +
-                        " " + state.dataDay5.toString().slice(state.dataDay5.toString().length - 3, state.dataDay5.toString().length)}
-                        &nbsp;день
-                    </p>
+                    <Navbar/>
+                    <div className="container" style={{
+                        marginTop: '5rem'
+                    }}>
+                        <p>
+                            сегодня:&nbsp;
+                            {state.dataDay3.toString().slice(0, state.dataDay3.toString().length - 3) +
+                            " " + state.dataDay3.toString().slice(state.dataDay3.toString().length - 3, state.dataDay3.toString().length)}
+                            &nbsp;день
+                        </p>
+                        <p>
+                            сегодня:&nbsp;
+                            {state.dataDay1.toString().slice(0, state.dataDay1.toString().length - 3) +
+                            " " + state.dataDay1.toString().slice(state.dataDay1.toString().length - 3, state.dataDay1.toString().length)}
+                            &nbsp;день нашей эры
+                        </p>
+                        <p><input type={'checkbox'} onChange={onChangeDay}/>{state.text1}</p>
+                        <p><input type={'checkbox'} onChange={onChangeToDay}/>{state.text2}</p>
+                        <p><input type={'date'} onChange={onChangeDate}/> date</p>
+                        <p>
+                            {state.dataDay5.toString().slice(0, state.dataDay5.toString().length - 3) +
+                            " " + state.dataDay5.toString().slice(state.dataDay5.toString().length - 3, state.dataDay5.toString().length)}
+                            &nbsp;день
+                        </p>
+                    </div>
                 </div>
-            </div>
             <Footer/>
         </div>
     )

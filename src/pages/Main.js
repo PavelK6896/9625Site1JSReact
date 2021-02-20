@@ -53,9 +53,9 @@ export const Main = () => {
                         <Animator animation={batch(Fade(), Sticky())}>
                             <Animator animation={MoveIn(-1000, -150)}>
                                 <Animator animation={MoveOut(2500, 350)}>
-                                    <img className="bd-placeholder-img card-img-top"
+                                  <a href='http://18.156.192.31/read1/'><img className="bd-placeholder-img card-img-top"
                                          src={img1}
-                                    />
+                                    /></a>
                                 </Animator>
                             </Animator>
                         </Animator>
@@ -65,9 +65,11 @@ export const Main = () => {
                     <ScrollPage page={3}>
                         <Animator animation={batch(Fade(), Sticky())}>
                             <Animator animation={MoveIn(1500, -150)}>
+                                <a href='https://pavelk6896.github.io/9740Storage2JavaSpringAngular/'>
                                 <img className="bd-placeholder-img card-img-top"
                                      src={img2}
                                 />
+                                </a>
                             </Animator>
                         </Animator>
                     </ScrollPage>
