@@ -6,6 +6,7 @@ import {Generator} from "./pages/Generator";
 import {Day} from "./pages/Day";
 import {Page} from "./pages/Page";
 import {FirebaseState} from "./context/firebase/FirebaseState";
+import {Moon} from "./pages/Moon";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
                     <Route path={'/page'} exact component={Page}/>
                     <Route path={'/generator'} exact component={Generator}/>
                     <Route path={'/day'} exact component={Day}/>
+                    <Route path={'/moon'} exact component={Moon}/>
 
                     <Route path={''} component={Main}/>
                 </Switch>
