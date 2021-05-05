@@ -58,46 +58,41 @@ export const Moon = () => {
                 <Navbar/>
                 <div className="container"
                      style={{
-                         marginTop: '5rem'
+                         marginTop: '4rem'
                      }}>
-
-                    <br/>--<br/>
-                    {calculateMoonDay1(date.getDate(), date.getMonth() + 1, date.getFullYear())}
-                    <br/>--<br/>
+                    {/*{calculateMoonDay1(date.getDate(), date.getMonth() + 1, date.getFullYear())}*/}
                     {calculateMoonDay2(date.getDate(), date.getMonth() + 1, date.getFullYear())}
 
                     <div
                         style={{
                             display: "flex",
                             flexDirection: "row",
-                            alignItems: "center",
-                            justifyContent: 'center',
+                            alignItems: 'flex-start',
+                            justifyContent: 'flex-start',
+
                         }}
                     >
                         <div style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: '45vw',
-                            height: '50vh',
+                            flexWrap: "nowrap",
+                            width: '25%',
                             background: '#dddde7',
                             overflowY: "auto",
 
                         }}
                         >
                             {d2[2].map((v, k) => {
-                                return <i key={k}>{k + 1}->{v}-><b
+                                return <i key={k}>{k + 1}={v}-<b
                                     style={{color: d2[1][state.text1.interpretation[k]].color}}>
                                     {d2[1][state.text1.interpretation[k]].key1}</b></i>
                             })}
-
                         </div>
                         <div style={{
                             display: "flex",
                             flexDirection: "column",
-                            width: '35vw',
-                            height: '50vh',
+                            width: '65%',
                             background: '#999',
-                            overflowY: "auto",
                         }}
                         >
                             {state.text1.text}
@@ -105,16 +100,22 @@ export const Moon = () => {
 
                         <div style={{
                             display: "flex",
-                            flexDirection: "column",
-                            width: '10vw',
-                            height: '50vh',
+                            flexWrap: "wrap",
+                            width: '10%',
                             background: '#777'
                         }}
                         >
                             {d2[0].map((v, k) => {
-                                return <button key={k} onClick={() => {
-                                    setState({...state, text1: v})
-                                }}> {k + 1} </button>
+                                return <button
+                                    style={{
+                                        width: '3vw',
+                                        height: '3vh',
+                                        background: '#44566d'
+                                    }}
+                                    key={k}
+                                    onClick={() => {
+                                        setState({...state, text1: v})
+                                    }}> {k + 1} </button>
                             })}
 
                         </div>
