@@ -4,20 +4,11 @@ import {Navbar} from "../component/Navbar";
 
 import * as data1 from "../context/data1";
 
-const d1 = Object.keys(data1);
-console.log(d1)
 const d2 = Object.values(data1);
 console.log(d2)
 
 export const Moon = () => {
 
-    const [state, setState] = useState({
-        check1: false,
-        check2: false,
-        text1: d2[0][0],
-        text2: 'седня включительно',
-        text3: d2[1] //масив
-    })
 
     const calculateMoonDay1 = (day, month, year) => {
         if (month <= 2) {
@@ -31,7 +22,6 @@ export const Moon = () => {
         let c = (b + month + day + vc) / 30;
         return Math.round(((c - parseInt(c)) * 30) + 1);
     };
-
 
     const calculateMoonDay2 = (d, m, y) => {
         let yearFirst1 = 2013
@@ -52,17 +42,27 @@ export const Moon = () => {
     }
 
     const date = new Date();
+    const moonDay = calculateMoonDay2(date.getDate(), date.getMonth() + 1, date.getFullYear())
+
+    const [state, setState] = useState({
+        check1: false,
+        check2: false,
+        text1: d2[0][moonDay - 1],
+        text2: 'седня включительно',
+        text3: d2[1],
+        current: 0
+    })
+
     return (
         <div className="body">
             <div className="wrapper">
                 <Navbar/>
                 <div className="container"
                      style={{
-                         marginTop: '4rem'
+                         marginTop: '4rem',
+                         textAlign: "center"
                      }}>
-                    {/*{calculateMoonDay1(date.getDate(), date.getMonth() + 1, date.getFullYear())}*/}
-                    {calculateMoonDay2(date.getDate(), date.getMonth() + 1, date.getFullYear())}
-
+                    {moonDay}
                     <div
                         style={{
                             display: "flex",
@@ -83,9 +83,15 @@ export const Moon = () => {
                         }}
                         >
                             {d2[2].map((v, k) => {
-                                return <i key={k}>{k + 1}={v}-<b
-                                    style={{color: d2[1][state.text1.interpretation[k]].color}}>
-                                    {d2[1][state.text1.interpretation[k]].key1}</b></i>
+                                return (
+                                    <i key={k}>
+                                        {k + 1}=
+                                        <b style={{color: d2[1][state.text1.interpretation[k]].color}}>
+                                            {d2[1][state.text1.interpretation[k]].key1}
+                                        </b>
+                                        ={v}
+                                    </i>
+                                )
                             })}
                         </div>
                         <div style={{
@@ -108,8 +114,9 @@ export const Moon = () => {
                             {d2[0].map((v, k) => {
                                 return <button
                                     style={{
-                                        width: '3vw',
-                                        height: '3vh',
+                                        width: '4vw',
+                                        height: '4vh',
+                                        margin: '1px',
                                         background: '#44566d'
                                     }}
                                     key={k}
