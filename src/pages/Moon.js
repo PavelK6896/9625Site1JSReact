@@ -60,16 +60,16 @@ export const Moon = () => {
                 <div className="container"
                      style={{
                          marginTop: '4rem',
+                         marginBottom: '5px',
                          textAlign: "center"
                      }}>
-                    {moonDay}
                     <div
                         style={{
                             display: "flex",
                             flexDirection: "row",
                             alignItems: 'flex-start',
                             justifyContent: 'flex-start',
-
+                            borderRadius: '5px'
                         }}
                     >
                         <div style={{
@@ -79,18 +79,29 @@ export const Moon = () => {
                             width: '25%',
                             background: '#dddde7',
                             overflowY: "auto",
+                            borderRadius: '5px',
+                            marginRight: '5px',
 
                         }}
                         >
                             {d2[2].map((v, k) => {
                                 return (
-                                    <i key={k}>
-                                        {k + 1}=
-                                        <b style={{color: d2[1][state.text1.interpretation[k]].color}}>
+                                    <div key={k} style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "space-between",
+                                        paddingLeft: '10px',
+                                        paddingRight: '10px',
+                                    }}>
+                                        {/*<div> {k + 1} </div>*/}
+                                        <div>{v}</div>
+                                        <b style={{
+                                            color: d2[1][state.text1.interpretation[k]].color
+                                        }}>
                                             {d2[1][state.text1.interpretation[k]].key1}
                                         </b>
-                                        ={v}
-                                    </i>
+
+                                    </div>
                                 )
                             })}
                         </div>
@@ -98,31 +109,46 @@ export const Moon = () => {
                             display: "flex",
                             flexDirection: "column",
                             width: '65%',
-                            background: '#999',
                         }}
                         >
-                            {state.text1.text}
+                            <div style={{
+                                marginBottom: '5px',
+                                background: '#6565ad',
+                                borderRadius: '5px',
+                            }}>
+                                {moonDay}
+                            </div>
+                            <div style={{
+                                background: '#999',
+                                borderRadius: '5px'
+                            }}>
+                                {state.text1.text}
+                            </div>
                         </div>
 
                         <div style={{
                             display: "flex",
                             flexWrap: "wrap",
-                            width: '10%',
-                            background: '#777'
+                            justifyContent: "center",
+                            width: '11%',
+                            background: 'rgba(152,161,177,0.7)',
+                            borderRadius: '2px',
+                            marginLeft: '5px',
                         }}
                         >
                             {d2[0].map((v, k) => {
                                 return <button
+                                    className='btn btn-hover-moon'
                                     style={{
-                                        width: '4vw',
-                                        height: '4vh',
+                                        width: '35px',
+                                        height: '35px',
                                         margin: '1px',
-                                        background: '#44566d'
                                     }}
                                     key={k}
                                     onClick={() => {
                                         setState({...state, text1: v})
-                                    }}> {k + 1} </button>
+                                    }}
+                                > {k + 1} </button>
                             })}
 
                         </div>
