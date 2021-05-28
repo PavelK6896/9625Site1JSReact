@@ -3,6 +3,7 @@ import {Footer} from "../component/Footer";
 import {Navbar} from "../component/Navbar";
 
 import * as data1 from "../context/data1";
+import lunarDays from "lunardays";
 
 const d2 = Object.values(data1);
 console.log(d2)
@@ -42,12 +43,19 @@ export const Moon = () => {
     }
 
     const date = new Date();
-    const moonDay = calculateMoonDay2(date.getDate(), date.getMonth() + 1, date.getFullYear())
+    const latitude = 55.09
+    const longitude = 36.65
+    const days = lunarDays(date.toISOString().substring(0, 10), latitude, longitude)
+    const moonDay2 = days[0].number
 
     const [state, setState] = useState({
+        moonDay: moonDay2,
+        moonDay2: moonDay2,
+        moonStart: days[0].start._d.toLocaleString(),
+        moonEnd: days[0].end._d.toLocaleString(),
         check1: false,
         check2: false,
-        text1: d2[0][moonDay - 1],
+        text1: d2[0][moonDay2 - 1],
         text2: 'седня включительно',
         text3: d2[1],
         current: 0
@@ -93,7 +101,7 @@ export const Moon = () => {
                                     }}
                                     key={k}
                                     onClick={() => {
-                                        setState({...state, text1: v})
+                                        setState({...state, text1: v, moonDay: k + 1})
                                     }}
                                 > {k + 1} </button>
                             })}
@@ -146,13 +154,37 @@ export const Moon = () => {
                         >
                             <div style={{
                                 marginBottom: '5px',
+                                background: '#53a389',
+                                borderRadius: '5px',
+                                display: "flex",
+                                flexDirection: "row",
+                                justifyContent: "space-evenly",
+                            }}>
+                                {state.moonDay2}
+                                <div>
+                                    {state.moonStart}
+                                    <br/>
+                                    {state.moonEnd}
+                                </div>
+                            </div>
+
+                            <div style={{
+                                marginBottom: '5px',
+                                background: '#70a172',
+                                borderRadius: '5px',
+                            }}>
+                                {date.toLocaleString()}
+                            </div>
+
+                            <div style={{
+                                marginBottom: '5px',
                                 background: '#6565ad',
                                 borderRadius: '5px',
                             }}>
-                                {moonDay}
+                                {state.moonDay}
                             </div>
                             <div style={{
-                                background: '#999',
+                                background: '#d2dbba',
                                 borderRadius: '5px'
                             }}>
                                 {state.text1.text}
