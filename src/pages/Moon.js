@@ -10,49 +10,41 @@ console.log(d2)
 
 export const Moon = () => {
 
-
-    const calculateMoonDay1 = (day, month, year) => {
-        if (month <= 2) {
-            month += 12;
-            year -= 1;
-        }
-        let nc = Math.floor(year / 100);
-        let vc = ((Math.floor(nc / 3) + Math.floor(nc / 4)) + 6) - nc;
-        let a = (year / 19);
-        let b = ((a - parseInt(a)) * 209);
-        let c = (b + month + day + vc) / 30;
-        return Math.round(((c - parseInt(c)) * 30) + 1);
-    };
-
-    const calculateMoonDay2 = (d, m, y) => {
-        let yearFirst1 = 2013
-        let yearMoon1 = 0
-        const yearMoon2 = (yearFirst2) => {
-            yearMoon1 = y - yearFirst2;
-            if (yearMoon1 > 20) {
-                yearFirst1 += 19;
-                yearMoon2(yearFirst1)
-            } else if (yearMoon1 < 0) {
-                yearFirst1 -= 19;
-                yearMoon2(yearFirst1)
-            }
-            return yearMoon1
-        }
-        let l = yearMoon2(yearFirst1);
-        return ((l * 11) - 14 + d + m) % 30
-    }
-
     const date = new Date();
     const latitude = 55.09
     const longitude = 36.65
     const days = lunarDays(date.toISOString().substring(0, 10), latitude, longitude)
-    const moonDay2 = days[0].number
+    let countCalculateDay = 0
+    if (date > days[0].end._d) {
+        countCalculateDay = 1
+    }
+
+    const moonDay2 = days[countCalculateDay].number
+
+
+    let dateMonthCurrent = []
+
+    function getLastDayOfMonth(year, month) {
+        let date7 = new Date(year, month + 1, 0);
+        return date7.getDate()
+    }
+
+
+    let date8 = getLastDayOfMonth(date.getFullYear(), date.getMonth())
+
+
+    for (let i = 0; i < date8; i++) {
+        let date9 = new Date();
+        date9.setDate(i + 1)
+        dateMonthCurrent.push(date9.toLocaleDateString())
+    }
+
 
     const [state, setState] = useState({
         moonDay: moonDay2,
         moonDay2: moonDay2,
-        moonStart: days[0].start._d.toLocaleString(),
-        moonEnd: days[0].end._d.toLocaleString(),
+        moonStart: days[countCalculateDay].start._d.toLocaleString(),
+        moonEnd: days[countCalculateDay].end._d.toLocaleString(),
         check1: false,
         check2: false,
         text1: d2[0][moonDay2 - 1],
@@ -105,6 +97,32 @@ export const Moon = () => {
                                     }}
                                 > {k + 1} </button>
                             })}
+
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div
+                                style={{}}>
+                                {
+                                    dateMonthCurrent.map((k, v) => {
+                                        return <button
+                                            key={k}
+                                            className='btn btn-hover-moon'
+                                            style={{
+                                                height: '35px',
+                                                width: '35px',
+                                                margin: '1px',
+
+                                            }}
+                                        >
+                                            {k.substring(0, 2)}
+                                        </button>
+                                    })
+
+                                }
+
+
+                            </div>
 
                         </div>
 
