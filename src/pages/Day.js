@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Footer} from "../component/Footer";
 import {Navbar} from "../component/Navbar";
+import {NavLink} from "react-router-dom";
 
 
 export const Day = () => {
@@ -35,7 +36,6 @@ export const Day = () => {
     const dataDay1 = dayN(data1.getUTCFullYear(), data1.getUTCMonth(), data1.getUTCDate());
     const dataDay2 = dayN(1994, 0, 28);
     const dataDay3 = dataDay1 - dataDay2;
-
 
 
     const [state, setState] = useState({
@@ -122,7 +122,7 @@ export const Day = () => {
             prevState => {
                 return {
                     ...prevState,
-                    dataDay5:  (dataDay4 - dataDay2)
+                    dataDay5: (dataDay4 - dataDay2)
                 }
             })
     }
@@ -130,32 +130,40 @@ export const Day = () => {
     return (
         <div className="body">
             <div className="wrapper">
-                    <Navbar/>
-                    <div className="container" style={{
-                        marginTop: '5rem'
-                    }}>
-                        <p>
-                            сегодня:&nbsp;
-                            {state.dataDay3.toString().slice(0, state.dataDay3.toString().length - 3) +
-                            " " + state.dataDay3.toString().slice(state.dataDay3.toString().length - 3, state.dataDay3.toString().length)}
-                            &nbsp;день
-                        </p>
-                        <p>
-                            сегодня:&nbsp;
-                            {state.dataDay1.toString().slice(0, state.dataDay1.toString().length - 3) +
-                            " " + state.dataDay1.toString().slice(state.dataDay1.toString().length - 3, state.dataDay1.toString().length)}
-                            &nbsp;день нашей эры
-                        </p>
-                        <p><input type={'checkbox'} onChange={onChangeDay}/>{state.text1}</p>
-                        <p><input type={'checkbox'} onChange={onChangeToDay}/>{state.text2}</p>
-                        <p><input type={'date'} onChange={onChangeDate}/> date</p>
-                        <p>
-                            {state.dataDay5.toString().slice(0, state.dataDay5.toString().length - 3) +
-                            " " + state.dataDay5.toString().slice(state.dataDay5.toString().length - 3, state.dataDay5.toString().length)}
-                            &nbsp;день
-                        </p>
-                    </div>
+                <Navbar/>
+                <div className="nav-item">
+                    <NavLink className="nav-link nav-ad1" to="/moon"
+                             style={{
+                                 marginTop: '5rem',
+                                 zIndex: 99,
+                                 // position: "absolute"
+                             }}> moon </NavLink></div>
+                <div className="container" style={{
+                    marginTop: '5rem',
+
+                }}>
+                    <p>
+                        сегодня:&nbsp;
+                        {state.dataDay3.toString().slice(0, state.dataDay3.toString().length - 3) +
+                        " " + state.dataDay3.toString().slice(state.dataDay3.toString().length - 3, state.dataDay3.toString().length)}
+                        &nbsp;день
+                    </p>
+                    <p>
+                        сегодня:&nbsp;
+                        {state.dataDay1.toString().slice(0, state.dataDay1.toString().length - 3) +
+                        " " + state.dataDay1.toString().slice(state.dataDay1.toString().length - 3, state.dataDay1.toString().length)}
+                        &nbsp;день нашей эры
+                    </p>
+                    <p><input type={'checkbox'} onChange={onChangeDay}/>{state.text1}</p>
+                    <p><input type={'checkbox'} onChange={onChangeToDay}/>{state.text2}</p>
+                    <p><input type={'date'} onChange={onChangeDate}/> date</p>
+                    <p>
+                        {state.dataDay5.toString().slice(0, state.dataDay5.toString().length - 3) +
+                        " " + state.dataDay5.toString().slice(state.dataDay5.toString().length - 3, state.dataDay5.toString().length)}
+                        &nbsp;день
+                    </p>
                 </div>
+            </div>
             <Footer/>
         </div>
     )

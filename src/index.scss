@@ -52,6 +52,17 @@ code {
 
 }
 
+.nav-ad1 {
+  position: absolute;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .nav-ad1 {
+    position: relative;
+  }
+}
+
 
 .a-href {
   text-decoration: none;

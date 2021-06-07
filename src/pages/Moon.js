@@ -4,6 +4,7 @@ import {Navbar} from "../component/Navbar";
 
 import * as data1 from "../context/data1";
 import lunarDays from "lunardays";
+import {NavLink} from "react-router-dom";
 
 const d2 = Object.values(data1);
 console.log(d2)
@@ -57,6 +58,14 @@ export const Moon = () => {
         <div className="body">
             <div className="wrapper">
                 <Navbar/>
+                <div className="nav-item">
+                <NavLink className="nav-link nav-ad1" to="/day"
+                         style={{
+                             marginTop: '5rem',
+                             zIndex: 99,
+                             // position: 'absolute'
+                         }}
+                > day </NavLink></div>
                 <div className="container"
                      style={{
                          marginTop: '4rem',
