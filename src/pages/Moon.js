@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Footer} from "../component/Footer";
 import {Navbar} from "../component/Navbar";
 
@@ -7,20 +7,51 @@ import lunarDays from "lunardays";
 import {NavLink} from "react-router-dom";
 
 const d2 = Object.values(data1);
-console.log(d2)
+const date = new Date();
+const latitude = 55.09
+const longitude = 36.65
 
 export const Moon = () => {
 
-    const date = new Date();
-    const latitude = 55.09
-    const longitude = 36.65
-    const days = lunarDays(date.toISOString().substring(0, 10), latitude, longitude)
+    const [state2, setState2] = useState({
+        date2: date.toISOString().substring(0, 10)
+    })
+    let days = lunarDays(state2.date2, latitude, longitude)
     let countCalculateDay = 0
     if (date > days[0].end._d) {
         countCalculateDay = 1
     }
-
     const moonDay2 = days[countCalculateDay].number
+    const [state, setState] = useState(init => {
+        console.log(init)
+        return {
+            moonDay: moonDay2,
+            moonDay2: moonDay2,
+            moonStart: days[countCalculateDay].start._d.toLocaleString(),
+            moonEnd: days[countCalculateDay].end._d.toLocaleString(),
+            check1: false,
+            check2: false,
+            text1: d2[0][moonDay2 - 1],
+            text2: 'седня включительно',
+            text3: d2[1],
+            current: 0
+        }
+    })
+    useEffect(() => {
+
+        setState({
+            ...state,
+            moonDay: moonDay2,
+            moonDay2: moonDay2,
+            moonStart: days[countCalculateDay].start._d.toLocaleString(),
+            moonEnd: days[countCalculateDay].end._d.toLocaleString(),
+            check1: false,
+            check2: false,
+            text1: d2[0][moonDay2 - 1],
+            text2: 'седня включительно',
+            text3: d2[1],
+        })
+    }, [state2.date2])
 
 
     let dateMonthCurrent = []
@@ -37,35 +68,22 @@ export const Moon = () => {
     for (let i = 0; i < date8; i++) {
         let date9 = new Date();
         date9.setDate(i + 1)
-        dateMonthCurrent.push(date9.toLocaleDateString())
+        dateMonthCurrent.push(date9.toISOString().substring(0, 10))
     }
 
-
-    const [state, setState] = useState({
-        moonDay: moonDay2,
-        moonDay2: moonDay2,
-        moonStart: days[countCalculateDay].start._d.toLocaleString(),
-        moonEnd: days[countCalculateDay].end._d.toLocaleString(),
-        check1: false,
-        check2: false,
-        text1: d2[0][moonDay2 - 1],
-        text2: 'седня включительно',
-        text3: d2[1],
-        current: 0
-    })
 
     return (
         <div className="body">
             <div className="wrapper">
                 <Navbar/>
                 <div className="nav-item">
-                <NavLink className="nav-link nav-ad1" to="/day"
-                         style={{
-                             marginTop: '5rem',
-                             zIndex: 99,
-                             // position: 'absolute'
-                         }}
-                > day </NavLink></div>
+                    <NavLink className="nav-link nav-ad1" to="/day"
+                             style={{
+                                 marginTop: '5rem',
+                                 zIndex: 99,
+                                 // position: 'absolute'
+                             }}
+                    > day </NavLink></div>
                 <div className="container"
                      style={{
                          marginTop: '4rem',
@@ -81,7 +99,6 @@ export const Moon = () => {
                             borderRadius: '5px'
                         }}
                     >
-
                         <div style={{
                             display: "flex",
                             flexWrap: "wrap",
@@ -123,8 +140,13 @@ export const Moon = () => {
                                                 margin: '1px',
 
                                             }}
+                                            onClick={() => {
+                                                setState2(prevState => {
+                                                    return {...prevState, date2: k}
+                                                })
+                                            }}
                                         >
-                                            {k.substring(0, 2)}
+                                            {k.substring(k.length - 2, k.length)}
                                         </button>
                                     })
 
