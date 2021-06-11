@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Footer} from "../component/Footer";
 import {Navbar} from "../component/Navbar";
 
@@ -12,19 +12,18 @@ const latitude = 55.09
 const longitude = 36.65
 
 export const Moon = () => {
-
-    const [state2, setState2] = useState({
-        date2: date.toISOString().substring(0, 10)
-    })
-    let days = lunarDays(state2.date2, latitude, longitude)
-    let countCalculateDay = 0
-    if (date > days[0].end._d) {
-        countCalculateDay = 1
-    }
-    const moonDay2 = days[countCalculateDay].number
     const [state, setState] = useState(init => {
-        console.log(init)
+        let date2 = date.toISOString().substring(0, 10)
+        let days = lunarDays(date2, latitude, longitude)
+        let countCalculateDay = 0
+        if (date > days[0].end._d) {
+            countCalculateDay = 1
+        }
+        const moonDay2 = days[countCalculateDay].number
         return {
+            date2,
+            days,
+            countCalculateDay,
             moonDay: moonDay2,
             moonDay2: moonDay2,
             moonStart: days[countCalculateDay].start._d.toLocaleString(),
@@ -37,21 +36,11 @@ export const Moon = () => {
             current: 0
         }
     })
-    useEffect(() => {
 
-        setState({
-            ...state,
-            moonDay: moonDay2,
-            moonDay2: moonDay2,
-            moonStart: days[countCalculateDay].start._d.toLocaleString(),
-            moonEnd: days[countCalculateDay].end._d.toLocaleString(),
-            check1: false,
-            check2: false,
-            text1: d2[0][moonDay2 - 1],
-            text2: 'седня включительно',
-            text3: d2[1],
-        })
-    }, [state2.date2])
+    const updateDays = (k) => {
+        let days = lunarDays(k, latitude, longitude)
+        setState({...state, date2: k, days})
+    }
 
 
     let dateMonthCurrent = []
@@ -124,37 +113,6 @@ export const Moon = () => {
                                 > {k + 1} </button>
                             })}
 
-                            <br/>
-                            <br/>
-                            <br/>
-                            <div
-                                style={{}}>
-                                {
-                                    dateMonthCurrent.map((k, v) => {
-                                        return <button
-                                            key={k}
-                                            className='btn btn-hover-moon'
-                                            style={{
-                                                height: '35px',
-                                                width: '35px',
-                                                margin: '1px',
-
-                                            }}
-                                            onClick={() => {
-                                                setState2(prevState => {
-                                                    return {...prevState, date2: k}
-                                                })
-                                            }}
-                                        >
-                                            {k.substring(k.length - 2, k.length)}
-                                        </button>
-                                    })
-
-                                }
-
-
-                            </div>
-
                         </div>
 
                         <div style={{
@@ -209,12 +167,31 @@ export const Moon = () => {
                                 flexDirection: "row",
                                 justifyContent: "space-evenly",
                             }}>
-                                {state.moonDay2}
+                                {state.days[state.countCalculateDay].number}
                                 <div>
-                                    {state.moonStart}
+                                    {state.days[state.countCalculateDay].start._d.toLocaleString()}
                                     <br/>
-                                    {state.moonEnd}
+                                    {state.days[state.countCalculateDay].end._d.toLocaleString()}
                                 </div>
+                            </div>
+                            <div
+                                style={{}}>
+                                {
+                                    dateMonthCurrent.map((k, v) => {
+                                        return <button
+                                            key={k}
+                                            className='btn btn-hover-moon'
+                                            style={{
+                                                height: '35px',
+                                                margin: '1px',
+
+                                            }}
+                                            onClick={() => updateDays(k)}
+                                        >
+                                            {k.substring(k.length - 2, k.length)}
+                                        </button>
+                                    })
+                                }
                             </div>
 
                             <div style={{
