@@ -40,9 +40,15 @@ export const Moon = () => {
 
     const updateDays = (k) => {
         let days = lunarDays(k, latitude, longitude)
-        setState({...state, date2: k, days, day: +k.substring(k.length - 2, k.length)})
-
-        console.log()
+        setState({
+            ...state,
+            date2: k,
+            days,
+            day: +k.substring(k.length - 2, k.length),
+            moonDay: days[0].number,
+            text1: d2[0][days[0].number - 1],
+            countCalculateDay: 0,
+        })
     }
 
     let dateMonthCurrent = []
@@ -51,7 +57,7 @@ export const Moon = () => {
         date.setDate(date.getDate() + days);
         return date;
     }
-    for (let i = -5; i < 5; i++) {
+    for (let i = 0; i <= 7; i++) {
         let date9 = new Date();
         dateMonthCurrent.push(date9.addDays(i).toISOString().substring(0, 10))
     }
@@ -117,7 +123,6 @@ export const Moon = () => {
                                             style={{
                                                 height: '35px',
                                                 margin: '1px',
-
                                             }}
                                             onClick={() => updateDays(k)}
                                         >
@@ -127,13 +132,28 @@ export const Moon = () => {
                                 }
                             </div>
 
-                            {
-                                state.days.map((v, k) => {
-                                    return <div
-                                        key={k}>  {v?.number} = {v?.start._d.toLocaleString()} - {v?.end._d.toLocaleString()}</div>
-                                })
-                            }
-
+                            <div style={{
+                                marginBottom: '5px',
+                                background: '#49aa70',
+                                borderRadius: '5px',
+                                display: "flex",
+                                flexDirection: "column",
+                                justifyContent: "space-evenly",
+                            }}>
+                                {
+                                    state.days.map((v, k) => {
+                                        return <div
+                                            style={{
+                                                marginBottom: '5px',
+                                                borderSpacing: '5px',
+                                                borderColor: '#183d26',
+                                                borderRadius: '5px',
+                                                borderStyle: 'solid',
+                                            }}
+                                            key={k}>  {v?.number} = {v?.start._d.toLocaleString()} - {v?.end._d.toLocaleString()}</div>
+                                    })
+                                }
+                            </div>
                         </div>
                         {/*2*/}
                         <div style={{
@@ -192,7 +212,6 @@ export const Moon = () => {
                                 display: "flex",
                                 flexWrap: "wrap",
                                 justifyContent: "center",
-                                // width: '20%',
                                 background: 'rgba(152,161,177,0.7)',
                                 borderRadius: '2px',
                                 marginRight: '5px',
