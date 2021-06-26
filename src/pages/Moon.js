@@ -85,14 +85,14 @@ export const Moon = () => {
                             flexDirection: "row",
                             alignItems: 'flex-start',
                             justifyContent: 'flex-start',
-                            borderRadius: '5px'
+                            borderRadius: '5px',
                         }}
                     >
-
-
+                        {/*1*/}
                         <div
                             style={{
                                 width: '20%',
+                                marginRight: '5px',
                             }}>
 
                             <div style={{
@@ -133,8 +133,7 @@ export const Moon = () => {
                             </div>
 
                             <div style={{
-                                marginBottom: '5px',
-                                background: '#49aa70',
+                                marginTop: '10px',
                                 borderRadius: '5px',
                                 display: "flex",
                                 flexDirection: "column",
@@ -145,8 +144,9 @@ export const Moon = () => {
                                         return <div
                                             style={{
                                                 marginBottom: '5px',
+                                                background: '#49aa70',
                                                 borderSpacing: '5px',
-                                                borderColor: '#183d26',
+                                                borderColor: '#94a796',
                                                 borderRadius: '5px',
                                                 borderStyle: 'solid',
                                             }}
@@ -233,10 +233,9 @@ export const Moon = () => {
                                 })}
 
                             </div>
-
-
                             <div style={{
                                 marginBottom: '5px',
+                                marginTop: '5px',
                                 background: '#6565ad',
                                 borderRadius: '5px',
                             }}>
