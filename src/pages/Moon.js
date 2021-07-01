@@ -9,16 +9,21 @@ import {NavLink} from "react-router-dom";
 const d2 = Object.values(data1);
 const date = new Date();
 const latitude = 55.09
-const longitude = 36.65
+const longitude = 36.
+
+const currentCalculateDay = (days) => {
+    let countCalculateDay = 0
+    if (date > days[0].end._d) {
+        countCalculateDay = 1
+    }
+    return countCalculateDay;
+};
 
 export const Moon = () => {
     const [state, setState] = useState(init => {
         let date2 = date.toISOString().substring(0, 10)
         let days = lunarDays(date2, latitude, longitude)
-        let countCalculateDay = 0
-        if (date > days[0].end._d) {
-            countCalculateDay = 1
-        }
+        let countCalculateDay = currentCalculateDay(days);
         const moonDay2 = days[countCalculateDay].number
         return {
             date2,
@@ -47,7 +52,7 @@ export const Moon = () => {
             day: +k.substring(k.length - 2, k.length),
             moonDay: days[0].number,
             text1: d2[0][days[0].number - 1],
-            countCalculateDay: 0,
+            countCalculateDay: currentCalculateDay(days),
         })
     }
 
@@ -167,13 +172,16 @@ export const Moon = () => {
 
                         }}
                         >
-                            <div style={{
+                            <button style={{
                                 marginBottom: '5px',
                                 background: '#70a172',
                                 borderRadius: '5px',
-                            }}>
+                            }}
+                                    className='btn btn-hover-moon'
+                                    onClick={() => updateDays(date.toISOString().substring(0, 10))}
+                            >
                                 {date.toLocaleString()}
-                            </div>
+                            </button>
                             {d2[2].map((v, k) => {
                                 return (
                                     <div key={k} style={{
